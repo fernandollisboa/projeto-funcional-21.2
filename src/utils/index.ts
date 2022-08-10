@@ -11,23 +11,23 @@
   um array de objetos agrupados pela referida chave.
 */
 
-export const groupBy = (key: string, collection: any[]) => {
+export const groupBy = (key: any, collection: any[]) => {
   const collectionCopy = [...collection];
-  
-  const result = collectionCopy.reduce((acc, curr) => {
-    const val = curr[key];
 
-    if (!acc[val]) {
-      acc[val] = [];
+  const result = collectionCopy.reduce((resultObj, currItem) => {
+    const group = currItem[key];
+
+    if (!resultObj[group]) {
+      resultObj[group] = [];
     }
 
-    acc[val].push(curr);
+    resultObj[group].push(currItem);
 
-    return acc;
+    return resultObj;
   }, {});
 
   return result;
-}
+};
 
 /*
   Recebe uma coleção contendo objetos possivelmente duplicados e retorna uma coleção de objetos sem duplicatas. 
@@ -39,15 +39,15 @@ export const groupBy = (key: string, collection: any[]) => {
   @returns Um array de objetos sem duplicatas.
 */
 
-export const distinct = (key: string, collection: any[]) => {
+export const distinct = (key: any, collection: any[]) => {
   const goupedItems = groupBy(key, collection);
-  
+
   const result = Object.values(goupedItems)
     .filter((arr: any) => arr.length === 1)
-    .map((arr: any) => arr[0])
+    .map((arr: any) => arr[0]);
 
-  return result
-}
+  return result;
+};
 
 /*
   Recebe uma coleção de objetos e um atributo e retorna uma coleção ordenada pelo atributo informado.
@@ -55,26 +55,18 @@ export const distinct = (key: string, collection: any[]) => {
   @param key - Nome da chave a ser usada na ordenação.
   @param collection - Coleção de objetos a ser ordenada.
 
-  @returns coleção ordenada.
+  @returns Uma coleção ordenada em relação à chave especificada.
 */
 
-export const orderBy = (key: string, collection: any[]) => {
-  const collectionCopy = [...collection]
-  
+export const orderBy = (key: any, collection: any[]) => {
+  const collectionCopy = [...collection];
+
   const result = collectionCopy.sort((a, b) => {
-    if (a[key] < b[key]) {
-      return -1;
-    }
-
-    if (a[key] > b[key]) {
-      return 1;
-    }
-
-    return 0;
+    return a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0;
   });
 
-  return result
-}
+  return result;
+};
 
 /*
   Recebe uma função reducer, um valor inicial e uma coleção de objetos e reduz a coleção à um único valor.
@@ -83,23 +75,30 @@ export const orderBy = (key: string, collection: any[]) => {
   @param initialValue - Valor inicial da redução.
   @param collection - Coleção de objetos a ser reduzida.
 
-  @returns valor final da redução.
+  @returns O valor final da redução.
 */
 
-export const reduce = (reducer: (acc: any, curr: any) => any, initialValue: any, collection: any[]) => {
+export const reduce = (
+  reducer: (acc: any, curr: any) => any,
+  initialValue: any,
+  collection: any[]
+) => {
   const collectionCopy = [...collection];
-  
+
   return collectionCopy.reduce(reducer, initialValue);
-}
+};
 
 /*
-  Função compose(f1,f2) - que representa a função de composição (alta ordem), correspondendo a compose(f1,f2)(arg) = f1(f2(arg))).
+  Função compose(f1, ..., fn) - que representa a função de composição (alta ordem), correspondendo a compose(f1,f2)(arg) = f1(f2(arg))).
 
   @param functions - Funções a serem compostas, sendo a primeira a mais externa da composição e a última a mais interna da composição.
 
   @returns função composta.
 */
 
-export const compose = <R, F extends (a: R, ...b: any) => R>(fn1: F, ...fns: Array<(a: R) => R>) => {
-  return fns.reduce((prevFn, nextFn) => value => prevFn(nextFn(value)), fn1) as F
-}
+export const compose = (...functions: Function[]) => {
+  const composition = (...args: any) =>
+    functions.reduceRight((params, fn) => fn(params), args);
+
+  return composition;
+};
