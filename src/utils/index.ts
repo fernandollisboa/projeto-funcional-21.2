@@ -103,3 +103,5 @@ export const reduce = (reducer: (acc: any, curr: any) => any, initialValue: any,
 export const compose = <R, F extends (a: R, ...b: any) => R>(fn1: F, ...fns: Array<(a: R) => R>) => {
   return fns.reduce((prevFn, nextFn) => value => prevFn(nextFn(value)), fn1) as F
 }
+
+
