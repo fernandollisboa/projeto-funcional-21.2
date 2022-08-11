@@ -10,7 +10,7 @@ import UserInfo from 'src/interfaces/UserInfo.interface';
 })
 export class ApiGithubService {
   apiURL = `https://api.github.com`;
-  token = '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';
+  token = '';
   options = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -21,7 +21,6 @@ export class ApiGithubService {
   constructor(private http: HttpClient) {}
 
   getAllIssues(userInfo: UserInfo) {
-    console.log({ userInfo });
     return this.http
       .get<Issue[]>(
         `${this.apiURL}/repos/${userInfo.name}/${userInfo.repo}/issues`,

@@ -4,9 +4,9 @@
   <div class="search-label-container">
     <div>
       <span>label:</span>
-      <input class="search-input" type="text" ngModel name="label" />
+      <input class="search-input" type="text" name="label" #label />
     </div>
-    <button class="search-button">
+    <button class="search-button" (click)="filterIssuesByLabel(label.value)">
       <p>Procurar</p>
     </button>
   </div>
@@ -17,6 +17,11 @@
       <div class="user-info-container">
         <img class="user-avatar" src="{{ i.user.avatar_url }}" />
         <p class="user-name">{{ i.user.login }}</p>
+        <li class="label-p" *ngFor="let label of i.labels">
+          <div class="label-border">
+            {{ label.name }}
+          </div>
+        </li>
       </div>
     </li>
   </ul>
