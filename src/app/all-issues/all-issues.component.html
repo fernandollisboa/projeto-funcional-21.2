@@ -1,6 +1,15 @@
 <div class="page-container">
   <h1>Todas as Issues</h1>
   <h2>github.com/{{ userInfo.name }}/{{ userInfo.repo }}/issues</h2>
+  <div class="search-label-container">
+    <div>
+      <span>label:</span>
+      <input class="search-input" type="text" ngModel name="label" />
+    </div>
+    <button class="search-button">
+      <p>Procurar</p>
+    </button>
+  </div>
   <ul id="issues-list-container">
     <li *ngFor="let i of issues" class="issue-container">
       <a href="{{ i.url }}">Issue #{{ i.id }}</a>
