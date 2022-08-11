@@ -1,0 +1,14 @@
+<div class="page-container">
+  <h1>Todas as Issues</h1>
+  <h2>github.com/{{ userInfo.name }}/{{ userInfo.repo }}/issues</h2>
+  <ul id="issues-list-container">
+    <li *ngFor="let i of issues" class="issue-container">
+      <a href="{{ i.url }}">Issue #{{ i.id }}</a>
+      <p>{{ i.title }}</p>
+      <div class="user-info-container">
+        <img class="user-avatar" src="{{ i.user.avatar_url }}" />
+        <p class="user-name">{{ i.user.login }}</p>
+      </div>
+    </li>
+  </ul>
+</div>

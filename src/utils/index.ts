@@ -95,10 +95,7 @@ export const reduce = (
 
   @returns função composta.
 */
-
-export const compose = (...functions: Function[]) => {
-  const composition = (...args: any) =>
-    functions.reduceRight((params, fn) => fn(params), args);
-
-  return composition;
-};
+// prettier-ignore
+export const compose = <R, F extends (a: R, ...b: any) => R>(fn1: F, ...fns: Array<(a: R) => R>) => {
+  return fns.reduce((prevFn, nextFn) => value => prevFn(nextFn(value)), fn1) as F
+}
