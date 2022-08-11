@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import Issue from 'src/interfaces/Issue.interface';
 import UserInfo from 'src/interfaces/UserInfo.interface';
 import { ApiGithubService } from 'src/services/api-github.service';
+import { orderBy } from '../../utils/index';
 
 @Component({
   selector: 'app-all-issues',
@@ -44,5 +45,15 @@ export class AllIssuesComponent implements OnInit {
     this.issues = this.issues.filter((iss) =>
       iss.labels.some((lb) => lb.name === labelName)
     );
+  }
+
+  sortIssuesByComments(criteria: string): void {
+    if (criteria === 'asc') {
+      this.issues = orderBy('comments', this.issues);
+    }
+
+    if (criteria === 'desc') {
+      this.issues = orderBy('comments', this.issues).reverse();
+    }
   }
 }
