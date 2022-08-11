@@ -56,7 +56,7 @@ export const orderBy = (key: any, collection: any[]) => {
   const collectionCopy = [...collection];
 
   const result = collectionCopy.sort((a, b) => {
-    return a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0;
+    return a[key] < b[key] ? -1 : 1;
   });
 
   return result;
