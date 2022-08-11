@@ -8,11 +8,7 @@ import UserInfo from 'src/interfaces/UserInfo.interface';
   styleUrls: ['./main-menu.component.css'],
 })
 export class MainMenuComponent {
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private http: HttpClient
-  ) {}
+  constructor(private router: Router) {}
 
   navigateToAllIssues(userInfo: UserInfo) {
     if (!userInfo.name.trim() || !userInfo.repo.trim()) {

@@ -6,35 +6,33 @@ import UserInfo from 'src/interfaces/UserInfo.interface'
 import { ApiGithubService } from 'src/services/api-github.service'
 
 @Component({
-    selector: 'app-all-issues',
-    templateUrl: './all-issues.component.html',
-    styleUrls: ['./all-issues.component.css'],
+  selector: 'app-all-issues',
+  templateUrl: './all-issues.component.html',
+  styleUrls: ['./all-issues.component.css'],
 })
 export class AllIssuesComponent implements OnInit {
-    issues: Issue[]
-    userInfo: UserInfo
+  issues: Issue[]
+  userInfo: UserInfo
 
-    constructor(
-        private route: ActivatedRoute,
-        private router: Router,
-        private http: HttpClient,
-        private apiGitHub: ApiGithubService
-    ) {
-        const name: string = route.snapshot.params['name']
-        const repo: string = route.snapshot.params['repo']
-        this.userInfo = { name, repo }
-        this.issues = []
-    }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private http: HttpClient,
+    private apiGitHub: ApiGithubService
+  ) {
+    const name: string = route.snapshot.params['name']
+    const repo: string = route.snapshot.params['repo']
+    this.userInfo = { name, repo }
+    this.issues = []
+  }
 
-    ngOnInit() {
-        this.apiGitHub
-            .getAllIssues(this.userInfo)
-            .subscribe((data: Issue[]) => {
-                this.issues = data
-            })
-    }
+  ngOnInit() {
+    this.apiGitHub.getAllIssues(this.userInfo).subscribe((data: Issue[]) => {
+      this.issues = data
+    })
+  }
 
-    listAllIssues(): Issue[] {
-        return this.issues
-    }
+  listAllIssues(): Issue[] {
+    return this.issues
+  }
 }

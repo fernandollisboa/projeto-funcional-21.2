@@ -2,7 +2,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   padding: 5% 0;
 }
@@ -10,9 +9,21 @@
 #issues-list-container {
   text-align: center;
   list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-inline-start: 0;
 }
 
 .issue-container {
+  width: 50%;
   background-color: aquamarine;
-  margin: 0 5px;
+  border-radius: 10px;
+  margin: 10px 5px;
+  padding-inline-start: 0;
+}
+
+.user-avatar {
+  border-radius: 50%;
+  width: 10%;
 }
