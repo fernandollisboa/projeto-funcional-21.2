@@ -1,6 +1,20 @@
 <div class="background">
-  <h2>menu</h2>
-  <button (click)="navigateToAllIssues()">
-    <p>Obter todas as issues</p>
-  </button>
+  <h2>Procure suas issues</h2>
+  <form
+    class="search-form"
+    #form="ngForm"
+    (submit)="navigateToAllIssues(form.value)"
+  >
+    <div>
+      <span class="input-label">Username </span>
+      <input class="search-input" type="text" ngModel name="name" />
+    </div>
+    <div>
+      <span>Repositório</span>
+      <input class="search-input" type="text" ngModel name="repo" />
+    </div>
+    <button>
+      <p>Obter todas as issues</p>
+    </button>
+  </form>
 </div>

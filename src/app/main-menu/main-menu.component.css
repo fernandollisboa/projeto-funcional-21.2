@@ -1,8 +1,18 @@
-.background{
+.background {
   padding: 5%;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.search-form {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+
+.search-input {
+  margin: 10px 5px;
 }

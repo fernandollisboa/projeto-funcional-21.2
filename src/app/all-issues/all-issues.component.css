@@ -1,4 +1,4 @@
-.page-container{
+.page-container {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -7,13 +7,12 @@
   padding: 5% 0;
 }
 
-
-#issues-list-container{
+#issues-list-container {
   text-align: center;
   list-style-type: none;
 }
 
-.issue-container{
+.issue-container {
   background-color: aquamarine;
   margin: 0 5px;
 }
