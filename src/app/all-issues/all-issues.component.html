@@ -10,10 +10,22 @@
       <p>Procurar</p>
     </button>
   </div>
+  <div>
+    <label for="order">Which order?</label>
+    <select name="order" id="order" #order>
+      <option value="asc">Ascending</option>
+      <option value="desc">Descending</option>
+    </select>
+    <button class="search-button" (click)="sortIssuesByComments(order.value)">
+      <br /><br />
+      <p>Procurar</p>
+    </button>
+  </div>
   <ul id="issues-list-container">
     <li *ngFor="let i of issues" class="issue-container">
       <a href="{{ i.url }}">Issue #{{ i.id }}</a>
       <p>{{ i.title }}</p>
+      <p>{{ i.comments }} comments</p>
       <div class="user-info-container">
         <img class="user-avatar" src="{{ i.user.avatar_url }}" />
         <p class="user-name">{{ i.user.login }}</p>
