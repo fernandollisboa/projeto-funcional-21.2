@@ -10,7 +10,7 @@ import UserInfo from 'src/interfaces/UserInfo.interface';
 })
 export class ApiGithubService {
   apiURL = `https://api.github.com`;
-  token = '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';
+  token = '<INSERT_TOKEN_HERE';
   options = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
