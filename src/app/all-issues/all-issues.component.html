@@ -38,13 +38,16 @@
       <p>Procurar</p>
     </button>
   </main>
-  <ul id="issues-list-container">
+  <ul id="issues-list-container" class="bg">
+
     <li *ngFor="let i of filteredIssues" class="issue-container">
-      <a href="{{ i.url }} ">Issue #{{ i.id }} ({{ i.state }})</a>
-      <p>
-        <b>{{ i.title }}</b>
-      </p>
-      <p>{{ i.comments }} comentários</p>
+      <div class="issue-top">
+        <a href="{{ i.url }} ">Issue #{{ i.id }} ({{ i.state }})</a>
+        <p>
+          <b>{{ i.title }}</b>
+        </p>
+        <p>{{ i.comments }} comentários</p>
+      </div>
       <div class="user-info-container">
         <img class="user-avatar" src="{{ i.user.avatar_url }}" />
         <p class="user-name">{{ i.user.login }}</p>
@@ -54,4 +57,5 @@
       </div>
     </li>
   </ul>
+
 </div>
