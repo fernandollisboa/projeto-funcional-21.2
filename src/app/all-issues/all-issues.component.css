@@ -28,7 +28,7 @@ main {
   padding-inline-start: 0;
 }
 
-.issue-container {
+/* .issue-container {
   border: 2px solid rgba(6, 137, 213, 0.57);
   min-width: 300px;
   width: 20%;
@@ -37,7 +37,56 @@ main {
   word-wrap: break-word;
   margin: 10px 5px;
   padding-inline-start: 0;
+} */
+/*
+.issue-top {
+
+} */
+
+.user-info-container {
+  /* border: 1px solid black; */
+  width: 40%;
 }
+
+.bg {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: center;
+  padding: 0;
+  margin: 10px;
+}
+
+.issue-top {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 0;
+  align-items: flex-start;
+
+}
+
+.issue-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  border: 1px solid rgba(6, 137, 213, 0.57);
+  padding: 20px;
+  margin: 20px;
+  width: 1000px;
+
+}
+
+/* .issue-container {
+  margin-top: 70px;
+  display: flex;
+  background: #6a7c91;
+  padding: 32px 32px;
+  width: 550px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+} */
 
 .user-avatar {
   border-radius: 50%;
@@ -69,5 +118,17 @@ main {
 }
 
 .label-name {
-  outline: 1px solid black;
+  background: rgb(94, 45, 209);
+  border-radius: 3px 0 0 3px;
+  color: rgb(255, 255, 255);
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 20px 0 23px;
+  position: relative;
+  margin: 0 10px 10px 0;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 8px;
+  -webkit-transition: color 0.2s;
 }
