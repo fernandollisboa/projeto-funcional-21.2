@@ -3,7 +3,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5% 0;
+}
+
+main {
+  background-color: rgba(6, 137, 213, 0.57);
+  border-radius: 5px;
+  padding: 20px 50px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
 }
 
 #issues-list-container {
@@ -16,8 +25,8 @@
 }
 
 .issue-container {
-  width: 50%;
-  background-color: aquamarine;
+  border: 2px solid rgba(6, 137, 213, 0.57);
+  max-width: 50%;
   border-radius: 10px;
   margin: 10px 5px;
   padding-inline-start: 0;
@@ -30,6 +39,11 @@
 
 .search-label-container {
   display: flex;
+  justify-content: center;
+}
+
+.filter-selector {
+  margin: 5px;
 }
 
 .search-form {
