@@ -28,8 +28,16 @@ export class AllIssuesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.apiGitHub.getAllIssues(this.userInfo).subscribe((data: Issue[]) => {
-      this.issues = data;
+    this.apiGitHub.getAllIssues(this.userInfo).subscribe({
+      next: (data: Issue[]) => {
+        this.issues = data;
+        console.log('aa');
+      },
+      error: (e) => {
+        console.log({ e });
+        window.alert(e);
+        this.router.navigate([`/`]);
+      },
     });
   }
 

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import UserInfo from 'src/interfaces/UserInfo.interface';
 @Component({
   selector: 'app-main-menu',

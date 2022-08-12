@@ -10,7 +10,7 @@ import UserInfo from 'src/interfaces/UserInfo.interface';
 })
 export class ApiGithubService {
   apiURL = `https://api.github.com`;
-  token = '';
+  token = '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';
   options = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -21,7 +21,6 @@ export class ApiGithubService {
   constructor(private http: HttpClient) {}
 
   getAllIssues(userInfo: UserInfo) {
-    console.log({ userInfo });
     return this.http
       .get<Issue[]>(
         `${this.apiURL}/repos/${userInfo.name}/${userInfo.repo}/issues`,
@@ -30,17 +29,10 @@ export class ApiGithubService {
       .pipe(catchError(this.handleError));
   }
 
-  handleError(error: any) {
-    const { errorMsg } = error.error;
-    window.alert(errorMsg);
-    return throwError(() => errorMsg);
+  handleError(res: any) {
+    const { status } = res;
+    const { message } = res.error;
+    const errMsg = `${status}: ${message}`;
+    return throwError(() => errMsg);
   }
 }
-
-
-// ---------------
-// -> a principio toda a parada de saldo bloqueado é feature que o banking já oferece
-// -> não ocorreria em nosso sitema, não faz sentido a gente fazer o bloqueio do nosso lado.
-
-// -> ser um proxy de saldo, pra bater o prazo precisamos simplificar sobre como vamos fazer
-//
