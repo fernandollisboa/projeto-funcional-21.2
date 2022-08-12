@@ -14,6 +14,7 @@ import { distinct, orderBy } from '../../utils/index';
 })
 export class AllIssuesComponent implements OnInit {
   issues: Issue[];
+  filteredIssues: Issue[];
   userInfo: UserInfo;
   labels: Label[];
 
@@ -27,13 +28,20 @@ export class AllIssuesComponent implements OnInit {
     const repo: string = route.snapshot.params['repo'];
     this.userInfo = { name, repo };
     this.issues = [];
+    this.filteredIssues = [];
     this.labels = [];
   }
 
-  ngOnInit() {
+  fetchAllIssues() {
     this.apiGitHub.getAllIssues(this.userInfo).subscribe({
       next: (data: Issue[]) => {
+        console.log(data);
+        if (!data.length) {
+          alert('O repositório não possui issues');
+          this.router.navigate([`/`]);
+        }
         this.issues = data;
+        this.filteredIssues = this.issues;
         this.labels = distinct(
           'name',
           this.issues.flatMap((i) => i.labels.map((label) => label))
@@ -46,23 +54,44 @@ export class AllIssuesComponent implements OnInit {
     });
   }
 
+  ngOnInit() {
+    this.fetchAllIssues();
+  }
+
   filterIssuesByLabel(labelName: string): void {
     if (!labelName.trim()) {
-      this.ngOnInit();
+      this.filteredIssues = [...this.issues];
       return;
     }
-    this.issues = this.issues.filter((iss) =>
-      iss.labels.some((lb) => lb.name === labelName)
-    );
+    this.filteredIssues = [
+      ...this.issues.filter((iss) =>
+        iss.labels.some((lb) => lb.name === labelName)
+      ),
+    ];
   }
 
   sortIssuesByComments(criteria: string): void {
     if (criteria === 'asc') {
-      this.issues = orderBy('comments', this.issues);
+      this.filteredIssues = orderBy('comments', this.filteredIssues);
     }
 
     if (criteria === 'desc') {
-      this.issues = orderBy('comments', this.issues).reverse();
+      this.filteredIssues = orderBy('comments', this.filteredIssues).reverse();
     }
+  }
+
+  filterIssuesByState(state: string) {
+    if (state === 'all') return;
+
+    this.filteredIssues = this.filteredIssues.filter((i) => i.state === state);
+  }
+
+  updateSearchParameters(
+    commentOrder: string,
+    label: string,
+    state: string
+  ): void {
+    this.filterIssuesByLabel(label);
+    this.sortIssuesByComments(commentOrder);
   }
 }

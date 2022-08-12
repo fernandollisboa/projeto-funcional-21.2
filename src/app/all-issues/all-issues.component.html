@@ -8,37 +8,48 @@
         <div>
           <label for="label">Filtrar por Label:</label>
           <select class="filter-selector" name="label" id="label" #label>
-            <option *ngFor="let l of labels" class="issue-container">
+            <option value="">-</option>
+            <option *ngFor="let l of labels" value="{{ l.name }}">
               {{ l.name }}
             </option>
           </select>
         </div>
-        <!-- <button class="search-button" (click)="filterIssuesByLabel(label.value)">
-        <span>Procurar</span>
-      </button> -->
       </div>
-      <label for="order">Ordernar por:</label>
-      <select class="filter-selector" name="order" id="order" #order>
-        <option value="asc">Nº de Comentários [Menor-Maior]</option>
-        <option value="desc">Mº de Comentários [Maior-Menor]</option>
+      <div>
+        <label for="order">Ordernar por:</label>
+        <select class="filter-selector" name="order" id="order" #comment_order>
+          <option value="asc">Nº de Comentários [Menor-Maior]</option>
+          <option value="desc">Mº de Comentários [Maior-Menor]</option>
+        </select>
+      </div>
+      <label for="is-open">Somente issues abertas?</label>
+      <select class="filter-selector" name="is-open" id="is-open" #is_open>
+        <option value="all">Não</option>
+        <option value="open">Sim</option>
       </select>
     </div>
-    <button class="search-button" (click)="sortIssuesByComments(order.value)">
+
+    <button
+      class="search-button"
+      (click)="
+        updateSearchParameters(comment_order.value, label.value, is_open.value)
+      "
+    >
       <p>Procurar</p>
     </button>
   </main>
   <ul id="issues-list-container">
-    <li *ngFor="let i of issues" class="issue-container">
-      <a href="{{ i.url }}">Issue #{{ i.id }}</a>
-      <p>{{ i.title }}</p>
+    <li *ngFor="let i of filteredIssues" class="issue-container">
+      <a href="{{ i.url }} ">Issue #{{ i.id }} ({{ i.state }})</a>
+      <p>
+        <b>{{ i.title }}</b>
+      </p>
       <p>{{ i.comments }} comentários</p>
       <div class="user-info-container">
         <img class="user-avatar" src="{{ i.user.avatar_url }}" />
         <p class="user-name">{{ i.user.login }}</p>
-        <li class="label-p" *ngFor="let label of i.labels">
-          <div class="label-border">
-            {{ label.name }}
-          </div>
+        <li class="label-name" *ngFor="let label of i.labels">
+          {{ label.name }}
         </li>
       </div>
     </li>
