@@ -1,9 +1,22 @@
 .page-container {
+  margin-top: 50px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5% 0;
+}
+
+a {
+  text-decoration: none;
+}
+main {
+  background-color: rgba(6, 137, 213, 0.57);
+  border-radius: 5px;
+  padding: 20px 50px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
 }
 
 #issues-list-container {
@@ -16,9 +29,12 @@
 }
 
 .issue-container {
-  width: 50%;
-  background-color: aquamarine;
+  border: 2px solid rgba(6, 137, 213, 0.57);
+  min-width: 300px;
+  width: 20%;
+  padding: 6px;
   border-radius: 10px;
+  word-wrap: break-word;
   margin: 10px 5px;
   padding-inline-start: 0;
 }
@@ -28,8 +44,17 @@
   width: 10%;
 }
 
+.filters-container {
+  margin: 10px 0;
+}
+
 .search-label-container {
   display: flex;
+  justify-content: center;
+}
+
+.filter-selector {
+  margin: 5px;
 }
 
 .search-form {
@@ -43,9 +68,6 @@
   margin: 10px 5px;
 }
 
-
-.label-border {
-  margin: 0 100px 10px 100px;
-  border: 1px solid blueviolet;
-  border-radius: 30%;
+.label-name {
+  outline: 1px solid black;
 }

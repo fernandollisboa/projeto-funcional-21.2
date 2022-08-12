@@ -36,9 +36,9 @@ export const groupBy = (key: any, collection: any[]) => {
 */
 
 export const distinct = (key: any, collection: any[]) => {
-  const goupedItems = groupBy(key, collection);
+  const groupedItems = groupBy(key, collection);
 
-  const result = Object.values(goupedItems)
+  const result = Object.values(groupedItems)
     .filter((arr: any) => arr.length === 1)
     .map((arr: any) => arr[0]);
 

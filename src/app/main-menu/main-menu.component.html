@@ -1,10 +1,10 @@
 <div class="background">
-  <h2>Procurar Issues</h2>
   <form
     class="search-form"
     #form="ngForm"
     (submit)="navigateToAllIssues(form.value)"
   >
+    <h2 class="page-title">Busca de Issues</h2>
     <div>
       <span class="input-label">Username </span>
       <input class="search-input" type="text" ngModel name="name" />
