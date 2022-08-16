@@ -79,14 +79,13 @@ export const reduce = (
 };
 
 /*
-  Função compose(f1, ..., fn) - que representa a função de composição (alta ordem), correspondendo a compose(f1,f2)(arg) = f1(f2(arg))).
+  Função compose(f1, f2) - que representa a função de composição (alta ordem), correspondendo a compose(f1,f2)(arg) = f1(f2(arg))).
   @param functions - Funções a serem compostas, sendo a primeira a mais externa da composição e a última a mais interna da composição.
   @returns função composta.
 */
 
-export const compose = (...functions: Function[]) => {
-  const composition = (...args: any) =>
-    functions.reduceRight((params, fn) => fn(params), args);
+export const compose = (f1: Function, f2: Function) => {
+  const composition = (...args: any) => f1(f2(...args));
 
   return composition;
 };
